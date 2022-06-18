@@ -1,0 +1,175 @@
+*{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+body {
+    margin: 1.5em;
+}
+a {
+    text-decoration: none; //remove unline under hyperlink
+    font-size: 1.3rem;
+}
+
+img {
+    width: 100%;
+}
+.hero-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(./inthedark.jpg);
+    background-size: cover;//need to study,allows background to show more
+    background-position-x: 20%;
+    background-position-y: 20%;
+    width: 100%;
+    height: 100vh;
+    //will allow an img to fall infront or behind an element
+    z-index: -1;
+    //starts animation line 147
+    animation: introLoad 2s forwards;
+}
+.logo {
+    color: white;
+    font-weight: bold;
+}
+nav {
+    position: fixed; //Used to keep that element at a fixed place. Regardless if you scroll up or down. 
+    right: 0;
+    top: 0;
+    height: 100vh;
+    background: white;
+    width: 50%;
+    z-index: 2;
+    text-transform: uppercase; 
+    transform: translateX(100%); //hides the close button
+    transition: transform .5s ease-in-out;
+
+
+    ul {
+        list-style-type: none; //remove bullet points on ul list
+        padding: 0;
+        margin-top: 8em;
+
+        a {
+            color: black;
+            padding: .75em 2em; //Padding will not work properly unless display is block
+            display: block;
+
+            &:hover {
+                background: rgb(238, 237, 237);
+            }
+        }
+    }
+        .close {
+            float: right;
+            margin: 2em;
+            width: 2.5em;
+    }
+}
+header {
+    display: flex; //use to put the nav items next to the logo
+    justify-content: space-between;//then use this to space it out to the right
+
+    svg {
+        width: 2em;
+        margin: -.6em;
+        cursor: pointer;
+    }
+}
+h1 {
+    font-size: 3rem;
+    margin: 2em 0 0 0;
+    line-height: 3.3rem;
+}
+section.hero {
+    color: white;
+    height: 90vh;
+    //animation occurs at line 160
+    animation: moveDown 1s ease-in-out forwards;//forwards means to make animation occur once
+    opacity: 0;
+}
+.subhead {
+    font-size: 1.4rem;
+}
+
+.more-info {
+    img {
+        width: 100%;
+        //make all img to the same size and portion correctly
+        object-fit: cover;
+        height: 20em;
+    }
+
+    .title {
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+    .desc {
+        line-height: 1.5rem; //spacing between line
+    }
+}
+
+.open-nav {
+    transform: translateX(0%);
+}
+
+
+@media only screen and (min-width: 600px) {
+    body {
+        margin: 1.5em 5em;
+        font-family: 'Roboto Condensed', sans-serif;
+    }  
+    
+}
+@media only screen and (min-width: 920px){
+    //menu icon will disappear
+    .menu {
+        display: none;
+    }
+    nav {
+        transform: translateX(0);
+        position: unset;
+        display: block;
+        width: auto;
+        height: auto;
+        background: none;
+
+        svg.close {
+            display: none;
+        }
+        ul {
+            display: flex;
+            margin: 0;
+            //nav list
+            a {
+                color: white; 
+                padding: .5em 1.5em;
+                font-size: .9rem;
+                //hover over list adds underline
+                &:hover {
+                    background: none;
+                    text-decoration: underline;
+
+                }
+            }
+        }
+    }
+}
+//animates the key frame from showing no intro to an intro
+@keyframes introLoad {
+    from {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+//animate main text to drop in
+@keyframes moveDown {
+    from {
+        transform: translateY(-100px);
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
